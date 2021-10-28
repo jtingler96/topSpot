@@ -3,15 +3,14 @@ function getValue(){
 
     //make sure the alert is invisible
     document.getElementById("alert").classList.add("invisible");
-    
     //get user string from the page
     let userString = document.getElementById("userString").value;
-    
-        //check for a palindrome
-        let returnObj = checkForPalindrome(userString);
 
-        //display message to the screen
-        displayMessage(returnObj);
+    //check for a palindrome
+    let returnObj = checkForPalindrome(userString);
+
+    //display message to the screen
+    displayMessage(returnObj);
 }
 
 //check if string is a palindrome
@@ -26,31 +25,27 @@ function checkForPalindrome(userString){
 
     //reverse string
     let revString = [];
-    let returnObj = [];
+    let returnObj = {};
 
     for (let i = userString.length-1; i >= 0; i--) {
-        revString += userString[i];
+        revString = userString[i];
     }
 
     //check if reverse string is the same as the original string
     if (revString == userString) {
-        document.getElementById("alert").classList.remove("alert-danger");
-        document.getElementById("alert").classList.add("alert-success");
-        returnObj.msg = "Well done! You entered a palindrome!"
+        returnObj.msg = "Well done! you entered a palindrome!"
     }
     else{
-        document.getElementById("alert").classList.remove("alert-success");
-        document.getElementById("alert").classList.add("alert-danger");
         returnObj.msg = "Sorry! You did not enter a palindrome"
     }
-    
+
     returnObj.reversed = revString;
 
     return returnObj;
 }
 
 //display a message to the screen
-function displayMessage(returnObj){
+function displayMessage(){
 
     document.getElementById("alertHeader").innerHTML = returnObj.msg;
     document.getElementById("msg").innerHTML = `Your phrase reversed is: ${returnObj.reversed} `;
